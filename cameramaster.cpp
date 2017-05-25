@@ -3,7 +3,9 @@
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 #pragma GCC diagnostic ignored "-Wunused-variable"
 #pragma GCC diagnostic ignored "-Wstrict-aliasing"
-#define BT_INFINITY
+#pragma GCC diagnostic ignored "-Wsign-compare"
+#pragma GCC diagnostic ignored "-Wextra"
+//#define BT_INFINITY
 
 #include <Urho3D/Urho3D.h>
 #include <Urho3D/Core/CoreEvents.h>
@@ -52,7 +54,7 @@ CameraMaster::CameraMaster(
     Object(context),
     masterControl_{masterControl}
 {
-  SubscribeToEvent(E_SCENEUPDATE, HANDLER(CameraMaster, HandleSceneUpdate));
+  SubscribeToEvent(E_SCENEUPDATE, URHO3D_HANDLER(CameraMaster, HandleSceneUpdate));
 
   //Create the camera. Limit far clip distance to match the fog
   translationNode_ = masterControl_->world_.scene->CreateChild("CamTrans");
